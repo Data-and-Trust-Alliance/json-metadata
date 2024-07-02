@@ -188,7 +188,21 @@
           "type": "object",
           "properties": {
             "regulation": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "system": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "code"
+              ]
             },
             "evaluated": {
               "type": "boolean"
@@ -218,7 +232,21 @@
           "type": "object",
           "properties": {
             "tool": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "system": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "code"
+              ]
             },
             "parameters": {
               "type": "string"

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dataandtrustalliance.org/data-standard-1.0.0.schema.json",
-  "title": "Data Standard 1.0.0",
+  "$id": "https://dataandtrustalliance.org/data-provenance-standard-1.0.0.schema.json",
+  "title": "Data Provenance Standard 1.0.0",
   "description": "The Data Provenance Standard is made up of three groups of metadata elements: Source, Provenance, and Use.",
   "type": "object",
   "properties": {
@@ -169,6 +169,9 @@
         },
         "minItems": 0,
         "uniqueItems": true
+      },
+      "sub-provenance": {
+        "$ref": "/provenance"
       }
     },
     "required": [
@@ -206,6 +209,9 @@
             },
             "evaluated": {
               "type": "boolean"
+            },
+            "tool": {
+              "type": "string"
             }
           },
           "required": [
@@ -225,13 +231,13 @@
         "minItems": 0,
         "uniqueItems": true
       },
-      "privacy-indicators": {
+      "privacy-enhancing": {
         "description": "Indicates whether techniques were used to protect personally identifiable information (PII) or sensitive personal information (SPI), highlighting the dataset's privacy considerations.",
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
-            "tool": {
+            "tool-category": {
               "type": "object",
               "properties": {
                 "code": {
@@ -248,11 +254,22 @@
                 "code"
               ]
             },
-            "parameters": {
+            "tool-used": {
               "type": "string"
             },
+            "parameters": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 0
+            },
             "result": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 0
             }
           },
           "required": [
@@ -344,7 +361,12 @@
       },
       "license": {
         "description": "Details the location or point of contact for identifying the terms under which the dataset can be used, including any restrictions or obligations, clarifying legal use and distribution rights. License may be an End User License Agreement (EULA), subject to Data Use Agreement (DUA).",
-        "type": "string"
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 0,
+        "uniqueItems": true
       },
       "intended-purpose": {
         "description": "Describes the purpose for which the dataset was created, guiding users on its intended use and potential applications against identified use cases. List all that apply from the Data Use codes that apply. Additional codes can be included with descriptions.",
@@ -367,7 +389,7 @@
             "description"
           ]
         },
-        "minItems": 0,
+        "minItems": 1,
         "uniqueItems": true
       },
       "copyright": {
@@ -399,6 +421,7 @@
       }
     },
     "required": [
+      "intended-purpose"
     ]
   },
   "required": [
